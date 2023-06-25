@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SistemasDistribuidos.MainPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowSpacing="30"
+          Padding="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="logo_app_modified.png"
+               WidthRequest="350"
+               HeightRequest="250"
+               Grid.Row="1"/>
+
+        <StackLayout Grid.Row="2"
+                     Spacing="15">
+            <Entry
+                x:Name="user"
+                TextColor="Black"
+                Placeholder="Usuario"
+                PlaceholderColor="LightGray"
+                HorizontalOptions="FillAndExpand"/>
+
+            <Entry
+                x:Name="password"
+                TextColor="Black"
+                Placeholder="Contraseña"
+                PlaceholderColor="LightGray"
+                HorizontalOptions="FillAndExpand" />
+
+            <Button
+                Grid.Row="3"
+                BackgroundColor="#72A6B5"
+                x:Name="logInButton"
+                Text="Iniciar sesion"
+                Clicked="logInButton_Clicked"
+                HorizontalOptions="FillAndExpand"/>
+
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

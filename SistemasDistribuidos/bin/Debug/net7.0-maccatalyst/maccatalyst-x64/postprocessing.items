@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="SistemasDistribuidos.app/Contents/MacOS/SistemasDistribuidos">
+      <BCSymbolMapName>SistemasDistribuidos.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>SistemasDistribuidos.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/jborsari/Projects/SistemasDistribuidos/SistemasDistribuidos/obj/Debug/net7.0-maccatalyst/maccatalyst-x64/mtouch-symbols.list</SymbolFile>
+      <DSymName>SistemasDistribuidos.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/jborsari/Projects/SistemasDistribuidos/SistemasDistribuidos</SourceProjectPath>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Maui.GoogleMaps;assembly=Maui.GoogleMaps"
+             x:Class="SistemasDistribuidos.Views.TestPage"
+             Title="TestPage">
+    <maps:Map x:Name="MyMap"
+                VerticalOptions="FillAndExpand"
+                MyLocationEnabled="False"
+                InitialCameraUpdate="52.38261677178758, 5.9595726638408415, 5, 30, 60"/>
+</ContentPage>

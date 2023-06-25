@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+            x:Class="SistemasDistribuidos.Views.HomeView"
+            NavigationPage.HasNavigationBar="True"
+            NavigationPage.HasBackButton="False"
+            BackgroundColor="LightGray"
+            Title="Sistemas distribuidos">
+    <TabbedPage.Children>
+
+        <ContentPage Title="Mapa de sensores"
+                     Appearing="MapPage_Appearing"
+                     x:Name="MapPage"
+                     IconImageSource="pin.png"
+                     NavigationPage.HasBackButton="False">
+            <Grid>
+                
+                <maps:Map x:Name="MyMap"
+                          ItemsSource="{Binding PinSensors}"
+                          MapType="Street"/>
+            </Grid>
+        </ContentPage>
+
+        <ContentPage Title="Fugas"
+                     Appearing="LeaksPage_Appearing"
+                     NavigationPage.HasBackButton="False"
+                     x:Name="LeaksPage"
+                     IconImageSource="broken_pipe.png">
+            <Grid RowSpacing="10" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".1*"/>
+                    <RowDefinition Height=".04*"/>
+                    <RowDefinition Height=".86*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" ColumnSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".4*"/>
+                        <RowDefinition Height=".6*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".38*"/>
+                        <ColumnDefinition Width=".38*"/>
+                        <ColumnDefinition Width=".24*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Fecha inicio: "
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                    <Label Text="Fecha fin: "
+                           Grid.Row="0"
+                           Grid.Column="1"/>
+                    <DatePicker TextColor="Black"
+                                x:Name="LeakStartDate"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                Format="dd/MM/yyyy"/>
+                    <DatePicker TextColor="Black"
+                                x:Name="LeakEndDate"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                Format="dd/MM/yyyy"/>
+                    <Button Text="Buscar"
+                            x:Name="LeaksBtn"
+                            Clicked="LeaksBtn_Clicked"
+                            BackgroundColor="#72A6B5"
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"/>
+                </Grid>
+                
+                
+                <Grid Grid.Row="1"
+                      Padding="15,0,15,0"
+                      VerticalOptions="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".25*"/>
+                        <ColumnDefinition Width=".25*"/>
+                        <ColumnDefinition Width=".25*"/>
+                        <ColumnDefinition Width=".25*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="ID"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Grid.Column="0"/>
+                    <Label Text="Area"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Grid.Column="1"/>
+                    <Label Text="Probabilidad"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Grid.Column="2"/>
+                    <Label Text="Fecha"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Grid.Column="3"/>
+                </Grid>
+                <ListView x:Name="LeaksListView"
+                          Grid.Row="2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid VerticalOptions="Center"
+                                      Padding="15,0,15,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".25*"/>
+                                        <ColumnDefinition Width=".25*"/>
+                                        <ColumnDefinition Width=".25*"/>
+                                        <ColumnDefinition Width=".25*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding id}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           Grid.Column="0"/>
+                                    <Label Text="{Binding area}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           Grid.Column="1"/>
+                                    <Label Text="{Binding leakProbability}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           Grid.Column="2"/>
+                                    <Label Text="{Binding timestampDate, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           Grid.Column="3"/>
+                                    
+                                </Grid>
+
+                            </ViewCell>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </Grid>
+        </ContentPage>
+
+        <ContentPage Title="Busqueda historica"
+                     Appearing="HistoricalSearchPage_Appearing"
+                     NavigationPage.HasBackButton="False"
+                     x:Name="HistoricalSearchPage"
+                     IconImageSource="list.png">
+            <Grid RowSpacing="10" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".1*"/>
+                    <RowDefinition Height=".04*"/>
+                    <RowDefinition Height=".86*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" ColumnSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".4*"/>
+                        <RowDefinition Height=".6*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".38*"/>
+                        <ColumnDefinition Width=".38*"/>
+                        <ColumnDefinition Width=".24*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Fecha inicio: "
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                    <Label Text="Fecha fin: "
+                           Grid.Row="0"
+                           Grid.Column="1"/>
+                    <DatePicker TextColor="Black"
+                                x:Name="HsStartDate"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                Format="dd/MM/yyyy"/>
+                    <DatePicker TextColor="Black"
+                                x:Name="HsEndDate"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                Format="dd/MM/yyyy"/>
+                    <Button Text="Buscar"
+                            x:Name="HsBtn"
+                            Clicked="HsBtn_Clicked"
+                            BackgroundColor="#72A6B5"
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"/>
+                </Grid>
+                <Grid Grid.Row="1"
+                      Padding="15,0,15,0"
+                      VerticalOptions="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".2*"/>
+                        <ColumnDefinition Width=".2*"/>
+                        <ColumnDefinition Width=".2*"/>
+                        <ColumnDefinition Width=".2*"/>
+                        <ColumnDefinition Width=".2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Sensor ID"
+                           HorizontalTextAlignment="Center"
+                           Grid.Column="0"/>
+                    <Label Text="Area"
+                           HorizontalTextAlignment="Center"
+                           Grid.Column="1"/>
+                    <Label Text="Mean"
+                           HorizontalTextAlignment="Center"
+                           Grid.Column="2"/>
+                    <Label Text="p95"
+                           HorizontalTextAlignment="Center"
+                           Grid.Column="3"/>
+                    <Label Text="p99"
+                           HorizontalTextAlignment="Center"
+                           Grid.Column="4"/>
+                </Grid>
+                <ListView x:Name="HSearchListView"
+                          Grid.Row="2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid VerticalOptions="Center"
+                                      Padding="15,0,15,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding id}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           Grid.Column="0"/>
+                                    <Label Text="{Binding area}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           Grid.Column="1"/>
+                                    <Label Text="{Binding mean}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           Grid.Column="2"/>
+                                    <Label Text="{Binding p95}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           Grid.Column="3"/>
+                                    <Label Text="{Binding p99}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           Grid.Column="4"/>
+                                </Grid>
+
+                            </ViewCell>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </Grid>
+        </ContentPage>
+
+    </TabbedPage.Children>
+
+</TabbedPage>
